@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinéma Les Studios - Landivisiau</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Arial, Helvetica, sans-serif; background: #030712; color: #fff; }
+    a { color: inherit; text-decoration: none; }
+    :root { --gold:#d8a431; --gold2:#f4c45f; --dark:#030712; }
+
+    .hero {
+      min-height: 82vh;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.14), rgba(3,7,18,.55), rgba(3,7,18,.92)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1920&auto=format&fit=crop") center/cover no-repeat;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 25% 20%, rgba(244,196,95,.28), transparent 32%),
+        radial-gradient(circle at 80% 25%, rgba(255,255,255,.18), transparent 28%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% 0 -10%;
+      height: 160px;
+      background: linear-gradient(0deg, #030712, transparent);
+      pointer-events: none;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    .nav {
+      position: relative;
+      z-index: 5;
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 26px;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+      animation: fadeDown .8s ease both;
+    }
+
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg,var(--gold2),var(--gold));
+      color: #111;
+      font-size: 26px;
+    }
+    .brand h2 { font-size: 22px; letter-spacing: 1px; text-transform: uppercase; }
+    .brand p { font-size: 12px; color: var(--gold2); margin-top: 2px; }
+
+    .menu {
+      display: flex;
+      gap: 26px;
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+    .menu a:first-child { color: var(--gold2); }
+
+    .hero-center {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+      max-width: 950px;
+      margin: 120px auto 0;
+      padding: 0 22px;
+      animation: fadeUp .9s ease both;
+    }
+    .welcome {
+      color: var(--gold2);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: clamp(46px,7vw,86px);
+      line-height: .9;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 0 15px 50px rgba(0,0,0,.9);
+    }
+    .subtitle {
+      margin-top: 20px;
+      color: rgba(255,255,255,.92);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: clamp(16px,2vw,22px);
+      font-weight: 700;
+    }
+    .hero-actions { margin-top: 34px; display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 6px;
+      padding: 16px 26px;
+      font-weight: 900;
+      font-size: 14px;
+      border: 1px solid transparent;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .btn-gold { background: linear-gradient(135deg,var(--gold2),var(--gold)); color: #111; box-shadow: 0 12px 30px rgba(216,164,49,.28); }
+    .btn-outline { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.85); color: #fff; backdrop-filter: blur(8px); }
+    .btn { transition: transform .25s ease, box-shadow .25s ease, background .25s ease; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 16px 35px rgba(0,0,0,.28); }
+
+    .quick-info {
+      position: relative;
+      z-index: 6;
+      max-width: 1050px;
+      margin: 85px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.28);
+      animation: fadeUp 1s ease .15s both;
+    }
+    .quick-item { padding: 26px; text-align: center; border-right: 1px solid rgba(255,255,255,.12); transition: transform .25s ease, background .25s ease; }
+    .quick-item:hover { transform: translateY(-4px); background: rgba(255,255,255,.12); }
+    .quick-item:last-child { border-right: 0; }
+    .quick-item .icon { font-size: 34px; color: var(--gold2); margin-bottom: 12px; }
+    .quick-item h3 { font-size: 15px; margin-bottom: 8px; text-transform: uppercase; }
+    .quick-item p { color: rgba(255,255,255,.72); font-size: 14px; }
+
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 26px; }
+    section { padding: 70px 0; }
+    .title-row { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 34px; }
+    .section-mark { width: 70px; height: 2px; background: var(--gold2); margin-bottom: 18px; }
+    h2 { font-size: 34px; letter-spacing: 4px; text-transform: uppercase; }
+    .muted { color: rgba(255,255,255,.65); margin-top: 10px; }
+    .outline-link {
+      border: 1px solid var(--gold);
+      color: var(--gold2);
+      padding: 14px 22px;
+      border-radius: 5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .movies { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 900px; margin: 0 auto; }
+    .movie {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      background: linear-gradient(180deg,rgba(17,24,39,.95),rgba(3,7,18,.98));
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 9px;
+      overflow: hidden;
+    }
+    .movie img { width: 100%; height: 100%; object-fit: cover; display: block; background: #000; min-height: 360px; }
+    .movie-body { padding: 18px; }
+    .movie h3 { font-size: 18px; line-height: 1.35; text-transform: uppercase; margin-bottom: 12px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .tag { border: 1px solid rgba(216,164,49,.62); color: #f8d889; padding: 5px 8px; border-radius: 4px; font-size: 12px; }
+    .duration { color: rgba(255,255,255,.72); font-size: 14px; margin-bottom: 16px; }
+    .schedule-table { margin-top: 14px; display: grid; gap: 8px; }
+    .schedule-row { display: grid; grid-template-columns: 150px 1fr; gap: 8px; align-items: start; }
+    .schedule-hours-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .schedule-day {
+      color: #111;
+      background: linear-gradient(135deg,var(--gold2),var(--gold));
+      padding: 9px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 900;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .schedule-hours {
+      border: 1px solid rgba(216,164,49,.75);
+      padding: 9px 10px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .schedule-hours.salle-1 { border-color: #f4c45f; color: #f4c45f; background: rgba(244,196,95,.08); }
+    .schedule-hours.salle-2 { border-color: #7dd3fc; color: #7dd3fc; background: rgba(125,211,252,.08); }
+
+    .trailer-btn {
+      margin-top: 12px;
+      display: inline-flex;
+      border: 1px solid #dc2626;
+      color: #fff;
+      background: #dc2626;
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .features {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      background: rgba(8,13,24,.82);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      padding: 28px 20px;
+    }
+    .feature { display: flex; gap: 14px; align-items: center; padding: 0 16px; }
+    .feature-icon { font-size: 32px; color: var(--gold2); }
+    .feature h3 { color: var(--gold2); font-size: 15px; margin-bottom: 5px; }
+    .feature p { color: rgba(255,255,255,.66); font-size: 13px; }
+
+    .history { background: #fff; color: #111827; }
+    .history-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .history p { color: #475569; line-height: 1.8; margin-top: 18px; font-size: 17px; }
+    .stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .stat { background: #f1f5f9; padding: 24px; border-radius: 18px; }
+    .stat strong { display: block; font-size: 30px; margin: 10px 0 4px; }
+
+    .prices { display: grid; grid-template-columns: repeat(5,1fr); gap: 16px; }
+    .price { background: rgba(8,13,24,.82); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 24px; text-align: center; }
+    .price strong { display: block; color: var(--gold2); font-size: 30px; margin: 12px 0; }
+    .price p { color: rgba(255,255,255,.62); font-size: 13px; line-height: 1.45; }
+
+    footer { border-top: 1px solid rgba(255,255,255,.1); padding: 42px 0; background: #020617; color: rgba(255,255,255,.68); }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 28px; }
+    footer h3 { color: #fff; margin-bottom: 14px; text-transform: uppercase; }
+    .copyright { border-top: 1px solid rgba(255,255,255,.08); margin-top: 30px; padding-top: 20px; font-size: 13px; }
+
+    .modal { display: none; position: fixed; inset: 0; z-index: 99; background: rgba(0,0,0,.82); place-items: center; padding: 20px; }
+    .modal.open { display: grid; }
+    .modal-box { width: min(900px,100%); background: #020617; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; overflow: hidden; }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; padding: 16px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .modal iframe { width: 100%; aspect-ratio: 16/9; border: 0; display: block; }
+    .close-btn { border: 0; border-radius: 8px; padding: 11px 14px; font-weight: 900; cursor: pointer; background: #38bdf8; color: #082f49; }
+
+    
+      to { opacity: 1; transform: translateX(-50%) scale(1.08); }
+    }
+
+    
+      50% { translate: 0 -18px; }
+    }
+
+    
+      50% { transform: rotate(8deg) scale(1.08); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+
+    @media (max-width:980px) {
+      .menu { display: none; }
+      .quick-info, .features, .prices, .footer-grid { grid-template-columns: repeat(2,1fr); }
+      .history-grid { grid-template-columns: 1fr; }
+      .hero-center { margin-top: 80px; }
+    }
+    @media (max-width:620px) {
+      .hero { min-height: 100vh; }
+      .welcome { font-size: 18px; }
+      .subtitle { letter-spacing: 2px; }
+      .quick-info, .movies, .features, .prices, .footer-grid, .stats { grid-template-columns: 1fr; }
+      .quick-info { margin-top: 70px; }
+      .movie { grid-template-columns: 1fr; }
+      .movie img { height: 420px; }
+      .schedule-row { grid-template-columns: 1fr; }
+      .title-row { flex-direction: column; align-items: flex-start; }
+    }
+  
+
+    
+  </style>
+</head>
+<body>
+  <header class="hero" id="accueil">
+    
+      <div class="film-strip film-1"></div>
+      <div class="film-strip film-2"></div>
+      <div class="film-strip film-3"></div>
+      <div class="clap">🎬</div>
+    </div>
+    <nav class="nav">
+      <div class="brand"><div class="brand-icon">🎬</div><div><h2>Les Studios</h2><p>Landivisiau</p></div></div>
+      <div class="menu"><a href="#accueil">Accueil</a><a href="#films">Programmation</a><a href="#tarifs">Tarifs</a><a href="#infos">Infos pratiques</a><a href="#contact">Contact</a></div>
+    </nav>
+
+    <div class="hero-center"><div class="welcome">Bienvenue au</div><h1>Cinéma Les Studios</h1><div class="subtitle">Votre cinéma, votre histoire.</div><div class="hero-actions"><a class="btn btn-gold" href="#films">🎟 Voir la programmation</a><a class="btn btn-outline" href="#infos">⌖ Infos pratiques</a></div></div>
+
+    <div class="quick-info"><div class="quick-item"><div class="icon">🎟</div><h3>Tarifs</h3><p>À partir de 5 €</p></div><div class="quick-item"><div class="icon">🕒</div><h3>Horaires</h3><p>Programmation semaine</p></div><div class="quick-item"><div class="icon">💺</div><h3>Confort</h3><p>254 fauteuils</p></div><div class="quick-item"><div class="icon">♿</div><h3>Accès</h3><p>PMR disponible</p></div></div>
+  </header>
+
+  <section id="films"><div class="container"><div class="title-row"><div><div class="section-mark"></div><h2>Programmation</h2><p class="muted">Découvrez les films à l’affiche cette semaine</p></div><a class="outline-link" href="#films">Voir toute la programmation →</a></div><div class="movies" id="movies-list"></div><div class="features"><div class="feature"><div class="feature-icon">☆</div><div><h3>Qualité d’image</h3><p>Projection numérique</p></div></div><div class="feature"><div class="feature-icon">🔊</div><div><h3>Son immersif</h3><p>Équipement numérique</p></div></div><div class="feature"><div class="feature-icon">💺</div><div><h3>Sièges confortables</h3><p>254 fauteuils</p></div></div><div class="feature"><div class="feature-icon">👥</div><div><h3>Ambiance conviviale</h3><p>Un lieu pour tous</p></div></div></div></div></section>
+
+  <section class="history" id="infos"><div class="container history-grid"><div><div class="section-mark"></div><h2>Histoire du cinéma</h2><p>Créé en 1984 avec deux salles, le cinéma Les Studios accompagne les sorties cinéma à Landivisiau depuis plusieurs décennies. Les deux salles ont été rénovées en 2022 pour offrir un meilleur confort aux spectateurs.</p></div><div class="stats"><div class="stat"><div>🎞</div><strong>2</strong><span>Salles</span></div><div class="stat"><div>💺</div><strong>254</strong><span>Fauteuils</span></div><div class="stat"><div>📽</div><strong>Numérique</strong><span>Équipement</span></div><div class="stat"><div>🍿</div><strong>Oui</strong><span>Comptoir confiserie</span></div></div></div></section>
+
+  <section id="tarifs">
+  <div class="container">
+    <div class="title-row">
+      <div>
+        <div class="section-mark"></div>
+        <h2>Tarifs</h2>
+        <p class="muted">Un justificatif est obligatoire pour bénéficier d’un tarif réduit.</p>
+      </div>
+    </div>
+
+    <div class="prices">
+
+      <div class="price">
+        <h3>Tarif Normal</h3>
+        <strong>9,00 €</strong>
+        <p>Le billet plein tarif</p>
+      </div>
+
+      <div class="price">
+        <h3>Tarif réduit</h3>
+        <strong>7,50 €</strong>
+        <p>+14 ans, -26 ans et +65 ans avec justificatif</p>
+      </div>
+
+      <div class="price">
+        <h3>Tarif jeune</h3>
+        <strong>5,50 €</strong>
+        <p>Moins de 14 ans</p>
+      </div>
+
+      <div class="price">
+        <h3>Dimanche matin</h3>
+        <strong>5,50 €</strong>
+        <p>Séance du dimanche matin</p>
+      </div>
+
+      <div class="price">
+        <h3>Abonnement</h3>
+        <strong>65 €</strong>
+        <p>10 places + 5 € frais de gestion</p>
+      </div>
+
+       <div class="price">
+        <h3>Salle 2</h3>
+        <strong>5 €</strong>
+        <p>Pas de Chauffage</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <footer id="contact"><div class="container footer-grid"><div><div class="brand"><div class="brand-icon">🎬</div><div><h2>Les Studios</h2><p>Votre cinéma, votre histoire.</p></div></div></div><div><h3>Navigation</h3><p>Accueil</p><p>Programmation</p><p>Tarifs</p><p>Infos pratiques</p></div><div><h3>Informations</h3><p>Horaires d’ouverture</p><p>Tous les soirs : 19h45 – 20h30</p><p><strong style="color:#f4c45f">Adresse</strong></p><p>3 Avenue du Maréchal Foch<br>29400 Landivisiau</p></div><div><h3>Contact</h3><p>☎ 02 98 68 42 87</p><p>Accès PMR</p><p>Comptoir confiserie</p></div></div><div class="container copyright">© 2026 Cinéma Les Studios — Tous droits réservés</div></footer>
+
+  <div class="modal" id="trailer-modal"><div class="modal-box"><div class="modal-head"><h3 id="trailer-title">Bande-annonce</h3><button class="close-btn" onclick="closeTrailer()">Fermer</button></div><iframe id="trailer-frame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div></div>
+
+  <script>
+    const movies = [
+      { title: "Le Diable s’habille en Prada 2", genre: "Comédie et Drame", duration: "1h59", image: "https://image.tmdb.org/t/p/w500/pD5fSVgDW2L5993eAlDd2GFXwIp.jpg", trailer: "https://www.youtube.com/watch?v=N8VuVMl9xq4", schedule: [{ day: "Mercredi 29 Avril", hours: "20h15", room: "Salle 1" }, { day: "Jeudi 30 Avril", hours: "20h15", room: "Salle 1" }, { day: "Vendredi 1 Mai", hours: "17h00", room: "Salle 1" }, { day: "Samedi 2 Mai", hours: "20h15", room: "Salle 1" }, { day: "Dimanche 3 Mai", hours: "17h00", room: "Salle 2" }, { day: "Dimanche 3 Mai", hours: "20h15", room: "Salle 1" }, { day: "Lundi 4 Mai", hours: "20h15", room: "Salle 1" }, { day: "Mardi 5 Mai", hours: "20h15", room: "Salle 1" }] },
+      { title: "La Poupée", genre: "Comédie", duration: "1h20", image: "https://image.tmdb.org/t/p/w600_and_h900_face/lw7ZdkW3BrNfgxWuFVyaXecE5Jn.jpg", trailer: "https://www.youtube.com/watch?v=h4AXflGENo4", schedule: [{ day: "Mercredi 29 Avril", hours: "20h15", room: "Salle 2" }, { day: "Jeudi 30 Avril", hours: "20h15", room: "Salle 2" }, { day: "Vendredi 1 Mai", hours: "14h00", room: "Salle 2" }, { day: "Vendredi 1 Mai", hours: "20h15", room: "Salle 2" }, { day: "Samedi 2 Mai", hours: "14h00", room: "Salle 2" }, { day: "Dimanche 3 Mai", hours: "14h00", room: "Salle 2" }, { day: "Lundi 4 Mai", hours: "20h15", room: "Salle 2" }] },
+      { title: "Super Mario Galaxy", genre: "Animation", duration: "1h40", image: "https://image.tmdb.org/t/p/w600_and_h900_face/aSQktALDmbunDbwkuZbZFMEWVFr.jpg", trailer: "https://www.youtube.com/watch?v=wOhwellmCFo", schedule: [{ day: "Mercredi 29 Avril", hours: "17h00", room: "Salle 1" }, { day: "Vendredi 1 Mai", hours: "14h00", room: "Salle 1" }, { day: "Samedi 2 Mai", hours: "17h00", room: "Salle 1" }, { day: "Dimanche 3 Mai", hours: "14h00", room: "Salle 1" }, { day: "Dimanche 3 Mai", hours: "17h00", room: "Salle 1" }] },
+      { title: "Juste une illusion", genre: "Comédie", duration: "1h56", image: "https://image.tmdb.org/t/p/w600_and_h900_face/eWPq3wSvJEMakESTXzaBECUNBYr.jpg", trailer: "https://www.youtube.com/watch?v=3NcTEeCZrY0", schedule: [{ day: "Vendredi 1 Mai", hours: "20h15", room: "Salle 1" }, { day: "Samedi 2 Mai", hours: "17h00", room: "Salle 2" }, { day: "Dimanche 3 Mai", hours: "10h45", room: "Salle 2" }, { day: "Dimanche 3 Mai", hours: "20h15", room: "Salle 2" }] },
+      { title: "Bagarre", genre: "Comédie", duration: "1h38", image: "https://image.tmdb.org/t/p/w600_and_h900_face/obu9sjDiMLZRU7psKoK9uD8gHRi.jpg", trailer: "https://www.youtube.com/watch?v=slaaLh7b6wA", schedule: [{ day: "Vendredi 1 Mai", hours: "17h00", room: "Salle 2" }, { day: "Samedi 2 Mai", hours: "20h15", room: "Salle 2" }, { day: "Mardi 5 Mai", hours: "20h15", room: "Salle 2" }] },
+      { title: "Les Contes du pommier", genre: "Animation", duration: "1h10", image: "https://image.tmdb.org/t/p/w600_and_h900_face/sVBm1mmAcjLNJfJXSynNfwBsHrm.jpg", trailer: "https://www.youtube.com/watch?v=vN6AZK6l5mw", schedule: [{ day: "Mercredi 29 Avril", hours: "17h00", room: "Salle 2" }, { day: "Samedi 2 Mai", hours: "14h00", room: "Salle 1" }, { day: "Dimanche 3 Mai", hours: "10h45", room: "Salle 1" }] }
+    ];
+
+    function esc(text = "") {
+      return String(text).replace(/[&<>"']/g, function(c) {
+        return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[c];
+      });
+    }
+
+    function splitList(value = "") {
+      return String(value).split(",").map(function(v) { return v.trim(); }).filter(Boolean);
+    }
+
+    function roomClass(room) {
+      return room === "Salle 2" ? "salle-2" : "salle-1";
+    }
+
+    function renderMovies() {
+      const list = document.getElementById("movies-list");
+      let html = "";
+
+      movies.forEach(function(m, i) {
+        let grouped = {};
+        (m.schedule || []).forEach(function(s) {
+          if (!grouped[s.day]) grouped[s.day] = [];
+          grouped[s.day].push(s);
+        });
+
+        let scheduleHtml = "";
+        Object.keys(grouped).forEach(function(day) {
+          let hoursHtml = "";
+          grouped[day].forEach(function(s) {
+            const room = s.room || "Salle 1";
+            hoursHtml += '<span class="schedule-hours ' + roomClass(room) + '">' + esc(s.hours) + ' · ' + esc(room) + '</span>';
+          });
+          scheduleHtml += '<div class="schedule-row"><span class="schedule-day">' + esc(day) + '</span><div class="schedule-hours-list">' + hoursHtml + '</div></div>';
+        });
+
+        let tagsHtml = "";
+        splitList(m.genre).forEach(function(g) {
+          tagsHtml += '<span class="tag">' + esc(g) + '</span>';
+        });
+
+        html += '<article class="movie">' +
+          '<img src="' + esc(m.image) + '" alt="' + esc(m.title) + '">' +
+          '<div class="movie-body">' +
+          '<h3>' + esc(m.title) + '</h3>' +
+          '<div class="tags">' + tagsHtml + '</div>' +
+          '<p class="duration">◷ ' + esc(m.duration || "Durée") + '</p>' +
+          '<div class="schedule-table">' + scheduleHtml + '</div>' +
+          (m.trailer ? '<button class="trailer-btn" onclick="openTrailer(' + i + ')">▶ Bande-annonce</button>' : '') +
+          '</div></article>';
+      });
+
+      list.innerHTML = html;
+    }
+
+    function youtubeEmbed(url) {
+      try {
+        const u = new URL(url);
+        let id = "";
+        if (u.hostname.includes("youtu.be")) id = u.pathname.replace("/", "");
+        else if (u.searchParams.get("v")) id = u.searchParams.get("v");
+        else if (u.pathname.includes("/embed/")) id = u.pathname.split("/embed/")[1];
+        return id ? "https://www.youtube.com/embed/" + id : url;
+      } catch(e) {
+        return url;
+      }
+    }
+
+    function openTrailer(i) {
+      document.getElementById("trailer-title").textContent = movies[i].title;
+      document.getElementById("trailer-frame").src = youtubeEmbed(movies[i].trailer);
+      document.getElementById("trailer-modal").classList.add("open");
+    }
+
+    function closeTrailer() {
+      document.getElementById("trailer-frame").src = "";
+      document.getElementById("trailer-modal").classList.remove("open");
+    }
+
+    renderMovies();
+  </script>
+</body>
+</html>
